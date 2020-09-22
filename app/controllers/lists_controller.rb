@@ -10,6 +10,13 @@ class ListsController < ApplicationController
     end
 
     get '/lists/:id' do
+        if logged_in?
+            @user = current_user
+            @lists = @user.lists 
+            erb :'lists/mylists'
+        else 
+            redirect '/login'
+        end
         
     end
 
