@@ -1,0 +1,5 @@
+<h1>See what's on everyone's list!</h1>
+
+<%@lists.each do |list|%>
+    <h3><%=User.find(list.user_id).name%></h3>
+    <% end %>
