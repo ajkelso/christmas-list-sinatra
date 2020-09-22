@@ -1,21 +1,30 @@
 class UsersController < ApplicationController
 
     get '/login' do
-        erb :'users/login'
+        if !logged_in?
+            erb :'users/login'
+        else
+            redirect '/welcome'
+        end
     end
 
     post '/login' do
-       user = User.find_by(username: params[:user][:username])
+        user = User.find_by(username: params[:user][:username])
        if user && user.authenticate(params[:user][:password]) 
         session[:user_id] = user.id 
         redirect '/welcome'
        else
+        binding.pry
         redirect '/login'
        end
     end
 
     get '/signup' do
-        erb :'users/signup'
+        if !logged_in?
+            erb :'users/signup'
+        else
+            redirect '/welcome'
+        end
     end
 
     post '/signup' do
@@ -25,8 +34,13 @@ class UsersController < ApplicationController
     end
 
     get '/welcome' do
-        @user = current_user
-        erb :'users/welcome'
+        if logged_in?
+            @user = current_user
+            erb :'users/welcome'
+        else
+            redirect '/login'
+        end
+
     end
 
     get '/logout' do
