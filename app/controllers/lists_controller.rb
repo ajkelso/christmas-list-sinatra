@@ -3,7 +3,7 @@ class ListsController < ApplicationController
     get '/lists' do
         if logged_in?
             @lists = List.all
-            erb :'lists/index'
+            erb :'lists/lists'
         else
             redirect '/login'
         end
