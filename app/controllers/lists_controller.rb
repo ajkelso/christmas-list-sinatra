@@ -9,6 +9,10 @@ class ListsController < ApplicationController
         end
     end
 
+    get '/lists/new' do
+        erb :'lists/new'
+    end
+
     get '/lists/:id' do
         if logged_in?
             @user = current_user
@@ -16,9 +20,15 @@ class ListsController < ApplicationController
             erb :'lists/mylists'
         else 
             redirect '/login'
-        end
-        
+        end  
     end
+
+    get '/lists/:id/edit' do
+        @list = List.find(4)
+        @user = current_user
+        erb :'lists/edit'
+    end
+    
 
 
 end
