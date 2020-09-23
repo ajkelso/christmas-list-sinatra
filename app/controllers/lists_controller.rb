@@ -13,6 +13,10 @@ class ListsController < ApplicationController
         erb :'lists/new'
     end
 
+    post '/lists' do
+        binding.pry
+    end
+
     get '/lists/:id' do
         if logged_in?
             @user = current_user
@@ -29,6 +33,7 @@ class ListsController < ApplicationController
         erb :'lists/edit'
     end
     
+
 
 
 end
