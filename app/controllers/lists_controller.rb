@@ -22,7 +22,7 @@ class ListsController < ApplicationController
         redirect "/lists/#{@list.id}"
     end
 
-    get '/lists' do
+    get '/mylists' do
         if logged_in?
             @user = current_user
             @lists = @user.lists 
@@ -62,9 +62,5 @@ class ListsController < ApplicationController
         List.delete(params[:id])
         redirect '/welcome'
     end
-
-    
-
-
 
 end

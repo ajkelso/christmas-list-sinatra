@@ -1,8 +1,9 @@
 <h1>Welcome, <%=@user.name%>!</h1>
 
 <h3>What would you like to do?</h3>
-
-<a href="/lists/<%=@user.id%>">View Your Lists</a>
+<% if !@user.lists.empty?%>
+    <a href="/mylists">View Your Lists</a>
+<% end %>
 <a href="/lists/new">Create New List</a>
 <a href="/lists">View Everyone's List</a>
 
