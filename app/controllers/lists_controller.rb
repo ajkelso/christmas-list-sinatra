@@ -53,9 +53,14 @@ class ListsController < ApplicationController
         params[:items].each do |item|
             Item.update(item[:id], {name: item[:name], price: item[:price], ranking: item[:ranking]})
         end
-
         redirect "/lists/#{params[:id]}"
+    end
 
+    delete '/lists/:id' do
+        @list = List.find(params[:id])
+        @list.items.each {|item| Item.update(item.id, {list_id: nil})}
+        List.delete(params[:id])
+        redirect '/welcome'
     end
 
     
