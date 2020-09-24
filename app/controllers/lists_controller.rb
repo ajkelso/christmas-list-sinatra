@@ -14,7 +14,12 @@ class ListsController < ApplicationController
     end
 
     post '/lists' do
-        binding.pry
+        @list = List.create(name: params[:list][:name], user_id: session[:user_id])
+        @items = params[:items].map do |item|
+           Item.create(name: item[:name], price: item[:price], ranking: item[:ranking], list_id: @list.id)
+        end  
+
+        erb :'lists/show'
     end
 
     get '/lists/:id' do
