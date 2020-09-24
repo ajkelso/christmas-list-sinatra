@@ -1,13 +1,14 @@
 <h1>Edit you list below:</h1>
 
-<form action="/lists" method="POST">
-<input type="hidden" name="_method" id="hidden" value="update">
+<form action="/lists/<%=@list.id%>" method="POST">
+<input type="hidden" name="_method" id="hidden" value="PATCH">
 <h3><label for="List Name">List Name: </label>
-<input type="text" name="list[name]" value=<%=@list.name%>></h3>
+<input type="text" name="list[name]" value="<%=@list.name%>"></h3>
 <br>
 <%@list.items.each do |item|%>
     <label for="Item Name">Item Name: </label>
-    <input type="text" name="items[][name]" value=<%=item.name%>>
+    <input type="hidden" name="items[][id]" value= <%=item.id%>>
+    <input type="text" name="items[][name]" value="<%=item.name%>">
     <label for="Price">Price: </label>
     <input type="number" name="items[][price]" value=<%=item.price%>>
     <label for="Ranking">Ranking (on a scale of 1-10):</label>

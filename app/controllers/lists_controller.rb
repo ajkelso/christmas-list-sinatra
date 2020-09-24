@@ -19,10 +19,10 @@ class ListsController < ApplicationController
            Item.create(name: item[:name], price: item[:price], ranking: item[:ranking], list_id: @list.id)
         end  
 
-        erb :'lists/show'
+        redirect "/lists/#{@list.id}"
     end
 
-    get '/lists/:id' do
+    get '/lists' do
         if logged_in?
             @user = current_user
             @lists = @user.lists 
@@ -32,11 +32,32 @@ class ListsController < ApplicationController
         end  
     end
 
+    get '/lists/:id' do
+        if logged_in?
+            @list = List.find(params[:id])
+            @items = @list.items
+            erb :'lists/show'
+        else
+            redirect '/login'
+        end
+    end
+
     get '/lists/:id/edit' do
-        @list = List.find(4)
+        @list = List.find(params[:id])
         @user = current_user
         erb :'lists/edit'
     end
+
+    patch '/lists/:id' do
+        List.update(params[:id], {name: params[:list][:name]})
+        params[:items].each do |item|
+            Item.update(item[:id], {name: item[:name], price: item[:price], ranking: item[:ranking]})
+        end
+
+        redirect "/lists/#{params[:id]}"
+
+    end
+
     
 
 
