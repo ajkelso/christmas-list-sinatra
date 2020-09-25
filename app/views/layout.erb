@@ -15,6 +15,14 @@
   </head>
   <body>
     <div class="wrapper">
+      <div class="nav">
+      <% if logged_in?%>
+          <a href="/lists">View Everyone's Wish Lists</a>
+          <a href="/mylists">View Your Wish Lists</a>
+          <a href="/lists/new">Create a New List</a>
+          <a href="/logout">Log Out</a>
+        <%end%>
+      </div>
 
         <%= yield %>
 
