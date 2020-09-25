@@ -4,7 +4,7 @@ class UsersController < ApplicationController
         if !logged_in?
             erb :'users/login'
         else
-            redirect '/welcome'
+            redirect "/profile/#{current_user.id}"
         end
     end
 
@@ -12,9 +12,8 @@ class UsersController < ApplicationController
         user = User.find_by(username: params[:user][:username])
        if user && user.authenticate(params[:user][:password]) 
         session[:user_id] = user.id 
-        redirect '/welcome'
+        redirect "/profile/#{current_user.id}"
        else
-        binding.pry
         redirect '/login'
        end
     end
@@ -23,20 +22,24 @@ class UsersController < ApplicationController
         if !logged_in?
             erb :'users/signup'
         else
-            redirect '/welcome'
+            redirect "/profile/#{current_user.id}"
         end
     end
 
     post '/signup' do
         @user = User.new(params[:user])
         create_user(params[:user])
-        redirect '/welcome'
+        redirect "/profile/#{current_user.id}"
     end
 
-    get '/welcome' do
+    get '/profile/:id' do
         if logged_in?
-            @user = current_user
-            erb :'users/welcome'
+            if current_user.id == params[:id].to_i
+                @user = current_user
+                erb :'users/profile'
+            else
+                redirect "profile/#{current_user.id}"
+            end
         else
             redirect '/login'
         end

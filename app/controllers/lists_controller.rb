@@ -56,7 +56,7 @@ class ListsController < ApplicationController
         @list = List.find(params[:id])
         @list.items.each {|item| Item.update(item.id, {list_id: nil})}
         List.delete(params[:id])
-        redirect '/welcome'
+        redirect back
     end
 
 end
