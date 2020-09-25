@@ -2,7 +2,19 @@ class ListsController < ApplicationController
 
     get '/lists' do
         if logged_in?
-            @lists = List.all
+            all_lists = List.all
+            @valid_lists = all_lists.select {|list| !list.items.empty?}
+            @lists = @valid_lists.map do |list|
+                hash = {}
+                nill = list.items.select {|item| item[:ranking] == nil}
+                ranked = list.items.select {|item| item[:ranking] != nil}
+                sorted = ranked.sort_by {|item| -item[:ranking]}
+                sorted.push(*nill) unless nill.empty?
+                sorted
+                hash = {list: list, user: User.find(list.user_id).name, items: sorted}
+                hash
+            end
+    
             erb :'lists/lists'
         else
             redirect '/login'
@@ -16,7 +28,9 @@ class ListsController < ApplicationController
     post '/lists' do
         @list = List.create(name: params[:list][:name], user_id: session[:user_id])
         @items = params[:items].map do |item|
+            if !item[:name].empty?
            Item.create(name: item[:name], price: item[:price], ranking: item[:ranking], list_id: @list.id)
+            end
         end  
 
         redirect "/lists/#{@list.id}"
