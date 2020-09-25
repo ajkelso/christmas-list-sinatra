@@ -1,29 +1,27 @@
 <h1>Here are your Lists, <%=@user.name%>!</h1>
 
 <%@lists.each do |list|%>
-    <% if !list.items.empty?%>
-        <h3><%=list.name%></h3>
-        <table>
+    <h3><%=list[:list].name%></h3>
+    <table>
+        <tr>
+            <th>Item</th>
+            <th>Price</th>
+            <th>Ranking</th>
+        </tr>
+        <%list[:items].each do |item|%>
             <tr>
-                <th>Item</th>
-                <th>Price</th>
-                <th>Ranking</th>
+                <td><%=item.name%></td>
+                <td><%=item.price%></td>
+                <td><%=item.ranking%></td>
             </tr>
-            <%list.items.each do |item|%>
-                <tr>
-                    <td><%=item.name%></td>
-                    <td><%=item.price%></td>
-                    <td><%=item.ranking%></td>
-                </tr>
-            <% end %>
+        <% end %>
     
-        </table>
-        <form action="/lists/<%=list.id%>/edit" method="GET">
-        <input type="submit" value="Edit">
-        </form>
-        <form action="/lists/<%=list.id%>" method="POST">
-        <input type="hidden" id="hidden" name="_method" value="DELETE">
-        <input type="submit" value="Delete">
-        </form>
-    <% end %>
+    </table>
+    <form action="/lists/<%=list[:list].id%>/edit" method="GET">
+    <input type="submit" value="Edit">
+    </form>
+    <form action="/lists/<%=list[:list].id%>" method="POST">
+    <input type="hidden" id="hidden" name="_method" value="DELETE">
+    <input type="submit" value="Delete">
+    </form>
 <% end %>

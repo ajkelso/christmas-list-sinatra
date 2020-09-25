@@ -21,7 +21,7 @@ class ListsController < ApplicationController
     get '/mylists' do
         if logged_in?
             @user = current_user
-            @lists = @user.lists 
+            @lists = gather_list_hashes(@user.lists) 
             erb :'lists/mylists'
         else 
             redirect '/login'
