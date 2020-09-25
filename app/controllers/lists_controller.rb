@@ -21,8 +21,12 @@ class ListsController < ApplicationController
     get '/mylists' do
         if logged_in?
             @user = current_user
-            @lists = gather_list_hashes(@user.lists) 
-            erb :'lists/mylists'
+            if !@user.lists.empty?
+                @lists = gather_list_hashes(@user.lists) 
+                erb :'lists/mylists'
+            else
+                redirect "profile/#{@user.id}"
+            end
         else 
             redirect '/login'
         end  
