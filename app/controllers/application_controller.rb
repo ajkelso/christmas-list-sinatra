@@ -2,39 +2,61 @@ require './config/environment'
 
 class ApplicationController < Sinatra::Base
 
-  configure do
-    set :public_folder, 'public'
-    set :views, 'app/views'
-    enable :sessions
-    set :session_secret, "SantasGotABrandNewBag"
-  end
-
-  get "/" do
-    erb :'users/index'
-  end
-
-  helpers do
-    def logged_in?
-        !!session[:user_id]
+    configure do
+        set :public_folder, 'public'
+        set :views, 'app/views'
+        enable :sessions
+        set :session_secret, "SantasGotABrandNewBag"
     end
 
-    def current_user
-        User.find(session[:user_id])
+    get "/" do
+        erb :'users/index'
     end
 
-    def login(user_id)
-        session[:user_id] = user_id
-    end
-
-    def create_user(params)
-        @user = User.new(params)
-        if @user.save 
-            login(@user.id)
-        else  
-            redirect '/signup'
+    helpers do
+        def logged_in?
+            !!session[:user_id]
         end
+
+        def current_user
+            User.find(session[:user_id])
+        end
+
+        def login(user_id)
+            session[:user_id] = user_id
+        end
+
+        def create_user(params)
+            @user = User.new(params)
+            if @user.save 
+                login(@user.id)
+            else  
+                redirect '/signup'
+            end
+        end
+
+        def get_valid_lists(lists)
+            lists.select {|list| !list.items.empty?}
+        end
+
+        def sort_by_item_ranking(list)
+            nill = list.items.select {|item| item[:ranking] == nil}
+            ranked = list.items.select {|item| item[:ranking] != nil}
+            sorted = ranked.sort_by {|item| -item[:ranking]}
+            sorted.push(*nill) unless nill.empty?
+            sorted
+        end
+
+        def create_list_hash(list)
+            hash = {list: list, user: User.find(list.user_id).name, items: sort_by_item_ranking(list)}
+        end
+
+        def gather_list_hashes(lists)
+            get_valid_lists(lists).map do |list|
+                create_list_hash(list)
+            end
+        end
+
+
     end
-
-end
-
 end
