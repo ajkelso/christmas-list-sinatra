@@ -1,6 +1,6 @@
 <h1>See your list below:</h1>
 
-<h3> <%= @list.name %></h3>
+<h3> <%= @list[:list].name %></h3>
 
 <table>
     <tr>
@@ -8,7 +8,7 @@
         <th>Price</th>
         <th>Ranking</th>
     </tr>
-        <% @items.each do |item|%>
+        <% @list[:items].each do |item|%>
             <tr>
                 <td><%=item.name%></td>
                 <td><%=item.price%></td>
@@ -17,10 +17,10 @@
         <% end %>
 </table>
         
-<form action="/lists/<%=@list.id%>/edit" method="GET">
+<form action="/lists/<%=@list[:list].id%>/edit" method="GET">
     <input type="submit" value="Edit">
 </form>
-<form action="/lists/<%=@list.id%>" method="POST">
+<form action="/lists/<%=@list[:list].id%>" method="POST">
     <input type="hidden" id="hidden" name="_method" value="DELETE">
     <input type="submit" value="Delete">
 </form>

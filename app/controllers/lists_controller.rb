@@ -14,11 +14,7 @@ class ListsController < ApplicationController
     end
 
     post '/lists' do
-        @list = List.create(name: params[:list][:name], user_id: session[:user_id])
-        valid_items = params[:items].select {|item| !item[:name].empty?}
-        @items = valid_items.map do |item|
-           Item.create(name: item[:name], price: item[:price], ranking: item[:ranking], list_id: @list.id)
-        end  
+        @list = create_new_list(params)
         redirect "/lists/#{@list.id}"
     end
 
@@ -34,8 +30,8 @@ class ListsController < ApplicationController
 
     get '/lists/:id' do
         if logged_in?
-            @list = List.find(params[:id])
-            @items = @list.items
+            list = List.find(params[:id])
+            @list = create_list_hash(list)
             erb :'lists/show'
         else
             redirect '/login'
