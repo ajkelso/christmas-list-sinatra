@@ -27,12 +27,11 @@ class ListsController < ApplicationController
 
     post '/lists' do
         @list = List.create(name: params[:list][:name], user_id: session[:user_id])
-        @items = params[:items].map do |item|
-            if !item[:name].empty?
+        valid_items = params[:items].select {|item| !item[:name].empty?}
+        @items = valid_items.map do |item|
            Item.create(name: item[:name], price: item[:price], ranking: item[:ranking], list_id: @list.id)
-            end
         end  
-
+        
         redirect "/lists/#{@list.id}"
     end
 
