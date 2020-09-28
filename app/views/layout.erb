@@ -10,12 +10,16 @@
     <title>ChristmasListSinatra</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/css2?family=Sigmar+One&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/stylesheets/main.css" />
   </head>
   <body>
     <div class="wrapper">
-      <div class="nav">
+      <div class="header">
+          <h1 id="title">Wish a List</h1>
+      </div>
+        <div class="nav">
       <% if logged_in?%>
         <ul>
           <li><a href="/lists">View Everyone's Wish Lists</a></li>
