@@ -17,10 +17,12 @@
     <div class="wrapper">
       <div class="nav">
       <% if logged_in?%>
-          <a href="/lists">View Everyone's Wish Lists</a>
-          <a href="/mylists">View Your Wish Lists</a>
-          <a href="/lists/new">Create a New List</a>
-          <a href="/logout">Log Out</a>
+        <ul>
+          <li><a href="/lists">View Everyone's Wish Lists</a></li>
+          <li><a href="/mylists">View Your Wish Lists</a></li>
+          <li><a href="/lists/new">Create a New List</a></li>
+          <li><a href="/logout">Log Out</a></li>
+        </ul>
         <%end%>
       </div>
 
