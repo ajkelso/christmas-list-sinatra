@@ -12,11 +12,12 @@
             <%list[:items].each do |item|%>
                 <tr>
                     <td><%=item[:name]%></td>
-                    <td><%=item[:price]%></td>
+                    <td>$<%=item[:price]%></td>
                     <td><%=item[:ranking]%></td>
                 </tr>
             <% end %>
     
         </table>
+        <br>
 
 <% end %>
