@@ -10,12 +10,20 @@ class ListsController < ApplicationController
     end
 
     get '/lists/new' do
-        erb :'lists/new'
+        if logged_in?
+            erb :'lists/new'
+        else
+            redirect '/login'
+        end
     end
 
     post '/lists' do
-        @list = create_new_list(params)
-        redirect "/lists/#{@list.id}"
+        if !params[:list][:name].empty?
+            @list = create_new_list(params)
+            redirect "/lists/#{@list.id}"
+        else
+            flash[:error] = "Please enter a name for your list."
+        end
     end
 
     get '/mylists' do
@@ -43,15 +51,26 @@ class ListsController < ApplicationController
     end
 
     get '/lists/:id/edit' do
-        @list = List.find(params[:id])
-        @user = current_user
-        erb :'lists/edit'
+        if logged_in?
+
+            @list = List.find(params[:id])
+            @user = current_user
+            erb :'lists/edit'
+        else
+            redirect '/login'
+        end
     end
 
     patch '/lists/:id' do
         List.update(params[:id], {name: params[:list][:name]})
         params[:items].each do |item|
-            Item.update(item[:id], {name: item[:name], price: item[:price], ranking: item[:ranking]})
+            if !item[:id]
+                if item[:name]
+                    Item.create(name: item[:name], price: item[:price], ranking: item[:ranking], list_id: params[:id])
+                end
+            else
+                Item.update(item[:id], {name: item[:name], price: item[:price], ranking: item[:ranking]})
+            end
         end
         redirect "/lists/#{params[:id]}"
     end

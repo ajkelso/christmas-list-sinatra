@@ -1,6 +1,6 @@
 <h1>See your list below:</h1>
 
-<h3> <%= @list[:list].name %></h3>
+<h2> <%= @list[:list].name %></h2>
 
 <table>
     <tr>
@@ -16,7 +16,7 @@
             </tr>
         <% end %>
 </table>
-        
+<br>      
 <form action="/lists/<%=@list[:list].id%>/edit" method="GET">
     <input type="submit" value="Edit">
 </form>

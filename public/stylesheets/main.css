@@ -7,20 +7,25 @@
     margin: 0;
     padding: 0;
   }
+  
+  .error {
+    color: #FF0000;
+  }
+
+  
 
   table {
     border-collapse: collapse;
   }
   
-  th, td {
-    border-bottom: 1px solid #ddd;
-  }
   table {
     width: 75%;
   }
   th, td {
     padding: 7px;
     text-align: left;
+    border-bottom: 1px solid #ddd;
+    width: 33%;
   }
   tr:hover {background-color: #f5f5f5;}
 
