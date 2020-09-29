@@ -36,8 +36,10 @@ class ApplicationController < Sinatra::Base
             @user = User.new(params)
             if @user.save 
                 login(@user.id)
-            else  
-                redirect '/signup'
+                redirect "/profile/#{current_user.id}"
+            else 
+                
+                erb :'users/signup'
             end
         end
 

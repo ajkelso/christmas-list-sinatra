@@ -1,4 +1,12 @@
 <h1>Welcome!  Please Sign up below:</h1>
+
+<%if @user && !!@user.errors%>
+    <%@user.errors.full_messages.each do |m| %>
+        <h3 class="error"><%= m %> </h3>
+    <% end %>
+    
+<% end %>
+
 <form action="/signup" method= "POST">
 <label for="name">Name:</label>
 <input type="text" name="user[name]">

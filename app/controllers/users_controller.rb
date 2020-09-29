@@ -30,7 +30,6 @@ class UsersController < ApplicationController
     post '/signup' do
         @user = User.new(params[:user])
         create_user(params[:user])
-        redirect "/profile/#{current_user.id}"
     end
 
     get '/profile/:id' do
