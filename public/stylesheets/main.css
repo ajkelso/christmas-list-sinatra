@@ -9,7 +9,7 @@
   }
 
   .header {
-    padding: 60px;
+    padding: 40px;
     text-align: center;
     background: #71dc98;
     color: white;
@@ -71,18 +71,12 @@
     width: 85%;
   }
 
-  a {
-    padding: 14px 25px;
-    text-align: center; 
-    text-decoration: none;
-    display: inline-block;
-  }
-
   .nav {
     
       text-align: center;
       margin: 20px 0 0 ;
-      padding: 10px 0;
+      padding: 5px 0;
+      background-color: #9f0f0fcd;
   }
 
   .nav ul{
@@ -100,15 +94,16 @@
     font-weight: normal;
     padding: 10px 5px;
     font-size: .80em;
+    text-decoration: none;
   }
 
   a:link {
-    color: green;
+    color: whitesmoke;
     font-size: larger;
   }
 
   a:visited {
-    color: darkgreen;
+    color: rgb(233, 233, 233)
   }
 
   h1 {
