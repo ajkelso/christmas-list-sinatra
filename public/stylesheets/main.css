@@ -19,6 +19,26 @@
   .header #title {
     font-family: 'Sigmar One', cursive;
   }
+
+  div#welcome {
+    margin: auto;
+    width: 50%;
+    text-align: center;
+  }
+
+  div#welcome a:link, a:visited {
+    background-color: #f44336;
+    color: white;
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border: solid 1px black;
+  }
+
+  div#welcome a:hover, a:active {
+    background-color: green;
+  }
   
   .error {
     color: #FF0000;
@@ -97,12 +117,12 @@
     text-decoration: none;
   }
 
-  a:link {
+  .nav a:link {
     color: whitesmoke;
     font-size: larger;
   }
 
-  a:visited {
+  .nav a:visited {
     color: rgb(233, 233, 233)
   }
 
