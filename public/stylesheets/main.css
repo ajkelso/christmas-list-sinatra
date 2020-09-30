@@ -44,6 +44,10 @@
     color: #FF0000;
   }
 
+  .success {
+    color: rgb(7, 206, 7)
+  }
+
   table {
     border-collapse: collapse;
     width: 90%;

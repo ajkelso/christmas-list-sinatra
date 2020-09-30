@@ -20,18 +20,30 @@
           <h1 id="title">Wish a List</h1>
       </div>
         <div class="nav">
-        <% unless request.env['PATH_INFO'] == "/"%>
-        <ul>
-          <li><a href="/">Home</a></li>
-          <% if logged_in?%>
-          <li><a href="/lists">View Everyone's Wish Lists</a></li>
-          <li><a href="/mylists">View Your Wish Lists</a></li>
-          <li><a href="/lists/new">Create a New List</a></li>
-          <li><a href="/logout">Log Out</a></li>
-        </ul>
-        <%end%>
-      <% end %>
-      </div>
+          <% unless request.env['PATH_INFO'] == "/"%>
+          <ul>
+            <li><a href="/">Home</a></li>
+              <% if logged_in?%>
+            <li><a href="/lists">View Everyone's Wish Lists</a></li>
+            <li><a href="/mylists">View Your Wish Lists</a></li>
+            <li><a href="/lists/new">Create a New List</a></li>
+            <li><a href="/logout">Log Out</a></li>
+          </ul>
+            <%end%>
+          <% end %>
+        </div>
+        <div class="error">
+          <% if flash[:error]%>
+            <br>
+            <h3><%=flash[:error]%></h3>
+          <% end %>
+        </div>
+        <div class="success">
+          <%if flash[:message]%>
+          <br>
+            <h3><%=flash[:message]%></h3>
+          <% end %>
+        </div>
 
         <%= yield %>
 

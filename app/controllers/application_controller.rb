@@ -48,10 +48,10 @@ class ApplicationController < Sinatra::Base
         end
 
         def sort_by_item_ranking(list)
-            nill = list.items.select {|item| item[:ranking] == nil}
+            unranked = list.items.select {|item| item[:ranking] == nil}
             ranked = list.items.select {|item| item[:ranking] != nil}
             sorted = ranked.sort_by {|item| -item[:ranking]}
-            sorted.push(*nill) unless nill.empty?
+            sorted.push(*unranked) unless unranked.empty?
             sorted
         end
 

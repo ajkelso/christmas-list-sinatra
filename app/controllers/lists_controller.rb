@@ -20,6 +20,7 @@ class ListsController < ApplicationController
     post '/lists' do
         if !params[:list][:name].empty?
             @list = create_new_list(params)
+            flash[:message] = "List Successfully Created!"
             redirect "/lists/#{@list.id}"
         else
             flash[:error] = "Please enter a name for your list."
@@ -42,8 +43,7 @@ class ListsController < ApplicationController
 
     get '/lists/:id' do
         if logged_in?
-            list = List.find(params[:id])
-            @list = create_list_hash(list)
+            @list = List.find(params[:id])
             erb :'lists/show'
         else
             redirect '/login'
@@ -79,7 +79,7 @@ class ListsController < ApplicationController
         @list = List.find(params[:id])
         @list.items.each {|item| Item.update(item.id, {list_id: nil})}
         List.delete(params[:id])
-        redirect back
+        redirect "/mylists"
     end
 
 end
