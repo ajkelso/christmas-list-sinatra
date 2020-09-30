@@ -2,7 +2,7 @@ class ListsController < ApplicationController
 
     get '/lists' do
         if logged_in?
-            @lists = gather_list_hashes(List.all)    
+            @users = User.all    
             erb :'lists/lists'
         else
             redirect '/login'

@@ -1,23 +1,13 @@
 <h1>See what's on everyone's list!</h1>
 
-<%@lists.each do |list|%>
-    
-        <h2><%=list[:user]%>: <%=list[:list].name%></h2>
-        <table>
-            <tr>
-                <th>Item</th>
-                <th>Price</th>
-                <th>Ranking</th>
-            </tr>
-            <%list[:items].each do |item|%>
-                <tr>
-                    <td><%=item[:name]%></td>
-                    <td>$<%=item[:price]%></td>
-                    <td><%=item[:ranking]%></td>
-                </tr>
-            <% end %>
-    
-        </table>
-        <br>
 
+<%@users.each do |user|%>
+    <h2><%=user.name%></h2>
+    <ul>
+        <%user.lists.each do |list|%>
+            <li><h3><a href=<%="/lists/#{list.id}"%>><%=list.name%></a></h3></li> 
+        <% end %>  
+    </ul>    
+    <br>
+    
 <% end %>
