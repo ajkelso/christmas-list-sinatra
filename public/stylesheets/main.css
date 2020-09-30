@@ -56,6 +56,10 @@
     margin-right: auto;
   }
 
+  h3#created_by {
+    text-align: center;
+  }
+
   th {
     border-bottom: 1px dashed rgb(143, 46, 46);
   }

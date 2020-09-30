@@ -1,6 +1,6 @@
-<h1>See your list below:</h1>
+<h1><%= @list.name %></h1>
 
-<h2> <%= @list.name %></h2>
+<h3 id="created_by">Created by, <%= @list.user.name %> on <%=@list.created_at.strftime("%B %e, %Y")%></h3>
 
 <table>
     <tr>
@@ -17,10 +17,12 @@
         <% end %>
 </table>
 <br>      
-<form action="/lists/<%=@list.id%>/edit" method="GET">
-    <input type="submit" value="Edit">
-</form>
-<form action="/lists/<%=@list.id%>" method="POST">
-    <input type="hidden" id="hidden" name="_method" value="DELETE">
-    <input type="submit" value="Delete">
-</form>
+<% if session[:user_id] == @list.user_id%>   
+    <form action="/lists/<%=@list.id%>/edit" method="GET">
+        <input type="submit" value="Edit">
+    </form>
+    <form action="/lists/<%=@list.id%>" method="POST">
+        <input type="hidden" id="hidden" name="_method" value="DELETE">
+        <input type="submit" value="Delete">
+    </form>
+<% end %>
