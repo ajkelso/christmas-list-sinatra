@@ -2,12 +2,13 @@
 
 
 <%@users.each do |user|%>
-    <h2><%=user.name%></h2>
-    <ul>
-        <%user.lists.each do |list|%>
-            <li><h3><a href=<%="/lists/#{list.id}"%>><%=list.name%></a></h3></li> 
-        <% end %>  
-    </ul>    
-    <br>
-    
+    <%if !user.lists.empty?%>
+        <h2><%=user.name%></h2>
+        <ul>
+            <%user.lists.each do |list|%>
+                <li><h3><a href=<%="/lists/#{list.id}"%>><%=list.name%></a></h3></li> 
+            <% end %>  
+        </ul>    
+        <br>
+    <% end %>
 <% end %>
