@@ -54,16 +54,6 @@ class ApplicationController < Sinatra::Base
             sorted
         end
 
-        def create_list_hash(list)
-            hash = {list: list, user: User.find(list.user_id).name, items: sort_by_item_ranking(list)}
-        end
-
-        def gather_list_hashes(lists)
-            get_valid_lists(lists).map do |list|
-                create_list_hash(list)
-            end
-        end
-
         def create_new_list(params)
             @list = List.new(name: params[:list][:name], user_id: session[:user_id])
         end
