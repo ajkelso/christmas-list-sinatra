@@ -18,12 +18,13 @@ class ListsController < ApplicationController
     end
 
     post '/lists' do
-        if !params[:list][:name].empty?
-            @list = create_new_list(params)
+        @list = create_new_list(params)
+        if @list.save
+            create_new_items(params)
             flash[:message] = "List Successfully Created!"
             redirect "/lists/#{@list.id}"
-        else
-            flash[:error] = "Please enter a name for your list."
+        else 
+            redirect "/lists/new"
         end
     end
 

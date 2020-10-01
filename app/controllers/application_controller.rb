@@ -65,12 +65,16 @@ class ApplicationController < Sinatra::Base
         end
 
         def create_new_list(params)
-            @list = List.create(name: params[:list][:name], user_id: session[:user_id])
-            valid_items = params[:items].select {|item| !item[:name].empty?}
-            valid_items.map do |item|
-                Item.create(name: item[:name], price: item[:price], ranking: item[:ranking], list_id: @list.id)
-            end  
-            @list
+            @list = List.new(name: params[:list][:name], user_id: session[:user_id])
+        end
+
+        def create_new_items(params)
+            items = params[:items].map do |item| 
+                Item.new(name: item[:name], price: item[:price], ranking: item[:ranking], list_id: @list.id)
+            end
+            items.each do |item|
+                item.save
+            end 
         end
     end
 end
