@@ -32,9 +32,9 @@ class ListsController < ApplicationController
         if logged_in?
             @user = current_user
             if !@user.lists.empty?
-                @lists = gather_list_hashes(@user.lists) 
                 erb :'lists/mylists'
             else
+                flash[:error] = "You don't have any lists and there are only #{days_to_xmas} days left until Christmas!!"
                 redirect "profile/#{@user.id}"
             end
         else 
