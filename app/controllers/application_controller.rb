@@ -38,7 +38,6 @@ class ApplicationController < Sinatra::Base
                 login(@user.id)
                 redirect "/profile/#{current_user.id}"
             else 
-                
                 erb :'users/signup'
             end
         end

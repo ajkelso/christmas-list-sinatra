@@ -28,7 +28,7 @@ class UsersController < ApplicationController
     end
 
     post '/signup' do
-        @user = User.new(params[:user])
+        # @user = User.new(params[:user])
         create_user(params[:user])
     end
 
@@ -52,6 +52,6 @@ class UsersController < ApplicationController
         end
         
         redirect to '/'
-        
+
     end
 end
