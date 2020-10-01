@@ -1,11 +1,26 @@
 <h1>Welcome, <%=@user.name%>!</h1>
 
-<h3>What would you like to do?</h3>
-<% if !@user.lists.empty?%>
-    <a href="/mylists">View Your Lists</a>
-<% end %>
-<a href="/lists/new">Create New List</a>
-<a href="/lists">View Everyone's List</a>
+<div class="profile">
+    <div id="list_count">
+        <p>You have</p>
+        <p class="large_number"><%= @user.lists.length%></p>
+        <p>Lists</p>
+    </div>
+
+    <div id="item_count">
+        <p>Containing</p>
+        <p class="large_number"><%= @user.items.length%></p>
+        <p>Items</p>
+    </div>
+
+    <div id="countdown">
+        <p>There are</p>
+        <P class ="large_number"><%= days_to_xmas %></P>
+        <p>Days until Christmas!</p>
+    </div>
+
+
+</div>
 
 
 

@@ -76,5 +76,9 @@ class ApplicationController < Sinatra::Base
                 item.save
             end 
         end
+
+        def days_to_xmas
+            (Date.new(2020, 12, 25)-Date.today).to_i
+        end
     end
 end
