@@ -27,7 +27,7 @@
   }
 
   div#welcome a:link, a:visited {
-    background-color: #f44336;
+    background-color: #FF0000;
     color: white;
     padding: 14px 25px;
     text-align: center;
@@ -71,8 +71,27 @@
     font-size: larger;
   }
   
-  tr:hover {background-color: #f5f5f5;}
+  tr:hover {
+    background-color: #f5f5f5;
+  }
+  
 
+  .list ul li {
+    list-style: inside url("../images/Red_Gift_Box_with_Green_Bow_PNG_Clip_Art_Image.png");
+    padding-left: 5%;
+  }
+
+  .list a:link {
+    color: rgb(0, 73, 0)
+  } 
+
+  .list a:visited {
+    color: rgb(0, 129, 0)
+  }
+
+  .list a:hover {
+    color: rgb(4, 233, 4);
+  }
 
   html, body {
     height: 100%;
@@ -89,7 +108,7 @@
   }
 
   .wrapper {
-    background: url(../images/white-paper.jpeg) no-repeat;
+    background: white;
     -moz-box-shadow: 0 0 10px rgba(0,0,0,.3);
     -webkit-box-shadow: 0 0 10px rgba(0,0,0,.3);
     box-shadow: 0 0 10px rgba(0,0,0,.3);
@@ -138,14 +157,15 @@
     font-size: 36px;
     line-height: 54px;
     text-align: center;
+    margin-bottom: 12px;
   }
 
+ 
   h2 {
-    border-top: 2px solid rgb(252, 251, 251);
+    border-bottom: 2px rgb(101, 100, 100) solid;
     font-size: 24px;
     line-height: 36px;
     margin-bottom: 16px;
-    
   }
 
   h3 {
