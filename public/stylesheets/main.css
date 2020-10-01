@@ -48,6 +48,32 @@
     color: rgb(7, 206, 7)
   }
 
+  .profile div {
+    display: inline-block;
+    width: 30%;
+    text-align:center
+  }
+
+  .large_number {
+    font-size: 6em;
+    padding-top: 15px;
+    padding-bottom: 18px;
+    color: rgb(0, 73, 0)
+  }
+
+  .large_number a {
+    text-decoration: none;
+  }
+
+  
+  .large_number a:visited {
+    color: rgb(0, 73,0);
+  }
+  
+  .large_number a:hover, a:active {
+    color: red;
+  }
+
   table {
     border-collapse: collapse;
     width: 100%;
