@@ -39,7 +39,7 @@
     border: solid 1px black;
   }
 
-  div#welcome a:hover, a:active {
+  div#welcome a:hover {
     background-color: green;
   }
   
@@ -194,7 +194,7 @@
     font-size: larger;
   }
 
-  .nav a:hover, a:active {
+  .nav a:hover,{
     color: rgb(0, 129, 0);
   }
 
