@@ -128,6 +128,23 @@
     background: url("../images/Blue_Paper.png") no-repeat;
   }
 
+  form {
+    text-align: center;
+  }
+
+  input {
+    padding: 5px;
+    margin-bottom: 3px;
+  }
+
+  input[type=text] {
+    width: 200px;
+  }
+
+  input[type=number] {
+    width: 60px
+  }
+
   /* --- Welcome Page Styles --- */
   body {
     background-color: ;
@@ -148,7 +165,6 @@
   }
 
   .nav {
-    
       text-align: center;
       margin: 20px 0 0 ;
       padding: 5px 0;
@@ -173,7 +189,7 @@
     text-decoration: none;
   }
 
-  .nav a:link {
+  .nav a:link, a:visited {
     color: whitesmoke;
     font-size: larger;
   }

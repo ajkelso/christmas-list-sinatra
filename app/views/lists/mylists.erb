@@ -2,21 +2,26 @@
 
 <%@user.lists.each do |list|%>
     <h3><%=list.name%></h3>
-    <table>
-        <tr>
-            <th>Item</th>
-            <th>Price</th>
-            <th>Ranking</th>
-        </tr>
-        
-        <%sort_by_item_ranking(list).each do |item|%>
+    <% if !list.items.empty?%>   
+        <table>
             <tr>
-                <td><%=item.name%></td>
-                <td>$<%=item.price%></td>
-                <td><%=item.ranking%></td>
+                <th>Item</th>
+                <th>Price</th>
+                <th>Ranking</th>
             </tr>
-        <% end %>
-    </table>
+            
+            <%sort_by_item_ranking(list).each do |item|%>
+                <tr>
+                    <td><%=item.name%></td>
+                    <td>$<%=item.price%></td>
+                    <td><%=item.ranking%></td>
+                </tr>
+            <% end %>
+        </table>
+    <%else%>
+        <h4>There are no items on this list.</h4>
+    <%end%>
+    
     <form action="/lists/<%=list.id%>/edit" method="GET">
     <input type="submit" value="Edit">
     </form>

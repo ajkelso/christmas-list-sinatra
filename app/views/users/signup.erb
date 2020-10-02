@@ -3,19 +3,24 @@
 <%if @user && !!@user.errors%>
     <h3 class="error"><%=@user.errors.full_messages.to_sentence%></h3>        
 <% end %>
-
-<form action="/signup" method= "POST">
-<label for="name">Name:</label>
-<input type="text" name="user[name]">
-<br>
-<label for="username">Create a username:</label>
-<input type="text" name="user[username]">
-<br>
-<label>Email Address: </label>
-<input type="email" name="user[email]">
-<br>
-<label>Password</label>
-<input type="password" name="user[password]">
-<br>
-<input type="submit" value="Sign Up">
-</form>
+<div id="signup">
+    <form action="/signup" method= "POST">
+    <label for="name">Name:</label>
+    <br>
+    <input type="text" name="user[name]">
+    <br>
+    <label for="username">Create a username:</label>
+    <br>
+    <input type="text" name="user[username]">
+    <br>
+    <label>Email Address: </label>
+    <br>
+    <input type="email" name="user[email]">
+    <br>
+    <label>Password</label>
+    <br>
+    <input type="password" name="user[password]">
+    <br>
+    <input type="submit" value="Sign Up">
+    </form>
+</div>
