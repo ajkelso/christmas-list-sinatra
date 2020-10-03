@@ -5,7 +5,7 @@ class ListsController < ApplicationController
             @users = User.all    
             erb :'lists/lists'
         else
-            redirect '/login'
+            redirect '/'
         end
     end
 
@@ -13,7 +13,7 @@ class ListsController < ApplicationController
         if logged_in?
             erb :'lists/new'
         else
-            redirect '/login'
+            redirect '/'
         end
     end
 
@@ -38,7 +38,7 @@ class ListsController < ApplicationController
                 redirect "profile/#{@user.id}"
             end
         else 
-            redirect '/login'
+            redirect '/'
         end  
     end
 
@@ -47,7 +47,7 @@ class ListsController < ApplicationController
             @list = List.find(params[:id])
             erb :'lists/show'
         else
-            redirect '/login'
+            redirect '/'
         end
     end
 
@@ -58,7 +58,7 @@ class ListsController < ApplicationController
             @user = current_user
             erb :'lists/edit'
         else
-            redirect '/login'
+            redirect '/'
         end
     end
 
