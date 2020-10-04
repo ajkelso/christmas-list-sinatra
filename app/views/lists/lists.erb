@@ -5,11 +5,11 @@
     <%if !user.lists.empty?%>
         <div class="list">
             <h2><%=user.name%></h2>
-                <ul>
-                    <%user.lists.each do |list|%>
-                        <li><h3><a href=<%="/lists/#{list.id}"%>><%=list.name%></a></h3></li> 
-                    <% end %>  
-                </ul> 
+            <ul>
+                <%user.lists.each do |list|%>
+                    <li><a href=<%="/lists/#{list.id}"%>><%=list.name%></a></li> 
+                <% end %>  
+            </ul> 
             <br>
         </div>       
     <% end %>

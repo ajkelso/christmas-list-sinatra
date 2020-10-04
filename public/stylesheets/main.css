@@ -45,10 +45,12 @@
   
   .error {
     color: #FF0000;
+    text-align: center;
   }
 
   .success {
-    color: rgb(7, 206, 7)
+    color: rgb(7, 206, 7);
+    text-align: center;
   }
 
   .profile div {
@@ -105,21 +107,21 @@
   }
   
 
-  .list ul li {
+  .list ul li{
     list-style: inside url("../images/Red_Gift_Box_with_Green_Bow_PNG_Clip_Art_Image.png");
     padding-left: 5%;
   }
 
   .list a:link {
-    color: rgb(0, 73, 0)
+    color: rgb(0, 80, 0)
   } 
 
   .list a:visited {
-    color: rgb(0, 129, 0)
+    color: rgb(0, 152, 186)
   }
 
   .list a:hover {
-    color: rgb(4, 233, 4);
+    color: #FF0000;
   }
 
   html, body {
