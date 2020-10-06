@@ -8,7 +8,7 @@
         <th>Price</th>
         <th>Ranking</th>
     </tr>
-        <% sort_by_item_ranking(@list).each do |item|%>
+        <% @list.ordered_items.each do |item|%>
             <tr>
                 <td><%=item.name%></td>
                 <td>$<%=item.price%></td>

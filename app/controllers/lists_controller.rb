@@ -53,8 +53,10 @@ class ListsController < ApplicationController
 
     get '/lists/:id/edit' do
         if logged_in?
-
             @list = List.find(params[:id])
+            if not_list_owner
+                redirect "/profile/#{current_user.id}"
+            end
             @user = current_user
             erb :'lists/edit'
         else
@@ -63,12 +65,14 @@ class ListsController < ApplicationController
     end
 
     patch '/lists/:id' do
+        @list = List.find(params[:id])
+        if not_list_owner
+            redirect "/profile/#{current_user.id}"
+        end
         List.update(params[:id], {name: params[:list][:name]})
         params[:items].each do |item|
             if !item[:id]
-                if item[:name]
-                    Item.create(name: item[:name], price: item[:price], ranking: item[:ranking], list_id: params[:id])
-                end
+                Item.create(name: item[:name], price: item[:price], ranking: item[:ranking], list_id: params[:id])  
             else
                 Item.update(item[:id], {name: item[:name], price: item[:price], ranking: item[:ranking]})
             end
@@ -78,6 +82,9 @@ class ListsController < ApplicationController
 
     delete '/lists/:id' do
         @list = List.find(params[:id])
+        if not_list_owner
+            redirect "/profile/#{current_user.id}"
+        end
         @list.items.each {|item| Item.update(item.id, {list_id: nil})}
         List.delete(params[:id])
         redirect "/mylists"

@@ -3,4 +3,9 @@ class List < ActiveRecord::Base
     has_many :items
 
     validates :name, presence: :true
+
+    def ordered_items
+        self.items.order(ranking: :desc)
+    end
+
 end

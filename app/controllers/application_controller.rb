@@ -46,14 +46,6 @@ class ApplicationController < Sinatra::Base
             lists.select {|list| !list.items.empty?}
         end
 
-        def sort_by_item_ranking(list)
-            unranked = list.items.select {|item| item[:ranking] == nil}
-            ranked = list.items.select {|item| item[:ranking] != nil}
-            sorted = ranked.sort_by {|item| -item[:ranking]}
-            sorted.push(*unranked) unless unranked.empty?
-            sorted
-        end
-
         def create_new_list(params)
             @list = List.new(name: params[:list][:name], user_id: session[:user_id])
         end
@@ -69,6 +61,10 @@ class ApplicationController < Sinatra::Base
 
         def days_to_xmas
             (Date.new(2020, 12, 25)-Date.today).to_i
+        end
+
+        def not_list_owner
+            session[:user_id] != @list.user_id
         end
     end
 end
